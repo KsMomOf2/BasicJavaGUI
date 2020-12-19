@@ -1,5 +1,5 @@
 !1562;s
-A
+J
 SAU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
 SCU0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
 S+U0JGRASP_MAIN_BOUNDS=%<CONTROL_SHELL_BOUNDS>\012PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning\012GCC_COLORS=\012-Run\012ADD_EXE_PATH==Y\012
@@ -17,11 +17,15 @@ s#n0classes
 s#p0doc
 s#q0test
 s#w0canvas
-!73;g
+!119;g
+%\011src%sScoreLabel.java
+%\011src%sTile.java
 %\011src%sCountLabel.java
 %\011src%sPractice.java
 %\011src%sLayouts.java
-!73;f
+!119;f
+%\011src%sScoreLabel.java
+%\011src%sTile.java
 %\011src%sCountLabel.java
 %\011src%sPractice.java
 %\011src%sLayouts.java
