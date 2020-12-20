@@ -13,24 +13,32 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.BorderLayout;
 import javax.swing.Timer;
 
-public class Layouts extends JFrame implements KeyListener{
-
-   CountLabel countDown;
-   ScoreLabel score;
-
-   Layouts() {
+public class Layouts extends JFrame implements KeyListener {
+   private final static int GAME_WIDTH = 700, GAME_HEIGHT = 500;
    
+   private CountLabel countDown;
+   private ScoreLabel score;
+   private GamePanel gamePanel;
+   
+   private boolean gameActive;
+   Layouts() {
+      gameActive = false;
       createFrame();
-      add(createPanel()); 
+      add(createPanel(), BorderLayout.PAGE_START);   
+      gamePanel = new GamePanel();   
+      add(gamePanel, BorderLayout.CENTER);
+      
       setVisible(true);
+      requestFocus();
    }
- 
+   
    private void createFrame() {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      setLocationRelativeTo(null);
-      setSize(400,200);
+      setLocation(25,20);
+      setSize(GAME_WIDTH,GAME_HEIGHT);
       addKeyListener(this);
       setFocusable(true);
       setFocusTraversalKeysEnabled(false);
@@ -63,7 +71,10 @@ public class Layouts extends JFrame implements KeyListener{
          new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               gamePanel.startMove();
                countDown.start();
+               gameActive = true;
+               requestFocus();// When the user presses the button, the keylistener stops working, this line fixes that
             }
          }
          );
@@ -76,7 +87,9 @@ public class Layouts extends JFrame implements KeyListener{
          new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               gamePanel.stop();
                countDown.stop();
+               gameActive = false;
             }
          }
          );
@@ -122,15 +135,27 @@ public class Layouts extends JFrame implements KeyListener{
    public void keyReleased(KeyEvent e) {
    }
    public void keyPressed(KeyEvent e) {
+      if (! gameActive)
+        return;
+        
       char ch = e.getKeyChar();
       System.out.println(ch);
       int code = e.getKeyCode();
       
       switch(code) {
-      case KeyEvent.VK_UP : System.out.println("Up"); break;
-      case KeyEvent.VK_DOWN: System.out.println("Down"); break;      
-      case KeyEvent.VK_LEFT: System.out.println("Left"); break;
-      case KeyEvent.VK_RIGHT: System.out.println("Right"); break;
+         case KeyEvent.VK_UP : System.out.println("Up"); 
+            break;
+         case KeyEvent.VK_DOWN: System.out.println("Down"); 
+            break;      
+         case KeyEvent.VK_LEFT: System.out.println("Left"); 
+            break;
+         case KeyEvent.VK_RIGHT: System.out.println("Right"); 
+            break;
+         case KeyEvent.VK_S : gamePanel.jumpDown(); break;
+         case KeyEvent.VK_SPACE: System.out.println("Space");
+         case KeyEvent.VK_W: 
+           gamePanel.jumpUp();
+           break;
       }
    }
    public void keyTyped(KeyEvent e) {
